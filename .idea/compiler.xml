@@ -13,7 +13,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="MavenHttpDemo" target="1.8" />
+      <module name="MavenHttpDemo" target="1.5" />
     </bytecodeTargetLevel>
   </component>
 </project>
