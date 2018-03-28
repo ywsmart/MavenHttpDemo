@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="接口自动化Test">
+    <test verbose="2" preserve-order="true" name="C:/Users/YangWang/IdeaProjects/MavenHttpDemo">
+        <classes>
+            <class name="com.yvan.RestUniformProcessor"/>
+        </classes>
+    </test>
+</suite>
