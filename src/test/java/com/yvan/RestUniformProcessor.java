@@ -6,6 +6,7 @@ import com.yvan.util.ExcelUtil;
 import com.yvan.util.RestUtil;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -35,12 +36,18 @@ public class RestUniformProcessor {
             BasicNameValuePair basicNameValuePair = new BasicNameValuePair(key, map.get(key));
             params.add(basicNameValuePair);
         }
-        // 处理接口调用
+        // 处理接口调用，获取结果
         String result = RestUtil.process(type, restUrl, params);
-        String filepath = "target/test-classes/rest_infos.xlsx";
-        int sheetNum = 2;
-        int cellNum = 5;
-        ExcelUtil.write(filepath, sheetNum, caseId, cellNum, result);
+        // 批量写入Excel
+        ExcelUtil.addTestResult(caseId, 5, result);
+    }
+
+    /**
+     * 批量写入Excel
+     */
+    @AfterSuite
+    public void batchWriteBackData() {
+        ExcelUtil.batchWrite("target/test-classes/rest_infos.xlsx", 2);
     }
 
     @DataProvider

@@ -3,12 +3,17 @@ package com.yvan.util;
 import org.apache.poi.ss.usermodel.*;
 
 import java.io.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Function：Excel工具类
  * Created by YangWang on 2018-03-25 2:09.
  */
 public class ExcelUtil {
+    public static Map<String, Map<Integer, String>> caseCellValueMap = new HashMap<String, Map<Integer, String>>();
+
     /**
      * @param filepath
      * @param sheetNum  表单序号非索引
@@ -85,18 +90,81 @@ public class ExcelUtil {
         }
     }
 
+    /**
+     * 批量回写Excel
+     *
+     * @param caseId  用例编号
+     * @param cellNum 列号
+     * @param value   需要写入对于列的值
+     */
+    public static void addTestResult(String caseId, Integer cellNum, String value) {
+        if (caseCellValueMap.get(caseId) != null) {
+            caseCellValueMap.get(caseId).put(cellNum, value);
+        } else {
+            Map<Integer, String> cellValueMap = new HashMap<Integer, String>();
+            cellValueMap.put(cellNum,value);
+            caseCellValueMap.put(caseId, cellValueMap);
+        }
+        System.out.println(caseCellValueMap);
+    }
 
-//    public static void main(String[] args) {
-//        Object[][] datas = read("src/rest_infos.xlsx", 1, 2, 3, 1, 4);
-//        for (Object[] objects :
-//                datas) {
-//            for (Object object :
-//                    objects) {
-//                System.out.print("【"+object+"】");
-//            }
-//            System.out.println();
-//        }
-//
-//    }
-
+    /**
+     * 批量写入
+     *
+     * @param filepath Excel文件路径
+     * @param sheetNum 表单序号
+     */
+    public static void batchWrite(String filepath, int sheetNum) {
+        InputStream is = null;
+        OutputStream os = null;
+        try {
+            is = new FileInputStream(new File(filepath));
+            Workbook workbook = WorkbookFactory.create(is);
+            Sheet sheet = workbook.getSheetAt(sheetNum - 1);
+            Set<String> caseIds = caseCellValueMap.keySet();
+            for (String caseId :// 处理用例编号对应行的数据写入
+                    caseIds) {
+                int rowCount = sheet.getLastRowNum();
+                Row wantedRow = null;
+                for (int i = 0; i <= rowCount; i++) { // 匹配所有行第一列值，确定用例编号对应的行
+                    Row row = sheet.getRow(i);
+                    Cell cell = row.getCell(0, Row.MissingCellPolicy.CREATE_NULL_AS_BLANK);
+                    cell.setCellType(CellType.STRING);
+                    String value = cell.getStringCellValue();
+                    if (value.equals(caseId)) {
+                        wantedRow = row;
+                        break;
+                    }
+                }
+                if (wantedRow != null) {
+                    Map<Integer, String> cellValueMap = caseCellValueMap.get(caseId);
+                    System.out.println(cellValueMap);
+                    Set<Integer> cellNums = cellValueMap.keySet();
+                    System.out.println(cellNums);
+                    for (Integer cellNum : // 处理某行上需要操作的所以列
+                            cellNums) {
+                        String value = cellValueMap.get(cellNum);
+                        Cell cell = wantedRow.getCell(cellNum - 1, Row.MissingCellPolicy.CREATE_NULL_AS_BLANK);
+                        cell.setCellType(CellType.STRING);
+                        cell.setCellValue(value);
+                    }
+                }
+            }
+            os = new FileOutputStream(new File(filepath));
+            workbook.write(os);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (os != null) {
+                    os.close();
+                }
+                if (is != null) {
+                    is.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }

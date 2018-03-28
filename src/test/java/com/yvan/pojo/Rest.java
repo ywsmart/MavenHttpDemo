@@ -1,7 +1,7 @@
 package com.yvan.pojo;
 
 /**
- * Function：
+ * Function：请求对象类
  * Created by YangWang on 2018-03-25 1:56.
  */
 public class Rest {

@@ -12,7 +12,7 @@ import org.apache.http.util.EntityUtils;
 import java.util.List;
 
 /**
- * Function：
+ * Function：请求工具类
  * Created by YangWang on 2018-03-26 23:49.
  */
 public class RestUtil {
