@@ -16,7 +16,7 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * Function：请求统一的中央处理器类
+ * Function：请求的中央处理类
  * Created by YangWang on 2018-03-25 1:13.
  */
 public class RestUniformProcessor {
