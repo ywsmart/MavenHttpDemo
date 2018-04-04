@@ -20,6 +20,7 @@ import java.util.Set;
  * Created by YangWang on 2018-03-25 1:13.
  */
 public class RestUniformProcessor {
+
     @Test(dataProvider = "datas")
     public void test(String caseId, String apiId, String requestData) throws Exception {
         // 获取接口地址

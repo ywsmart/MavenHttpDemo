@@ -1,4 +1,4 @@
-package com.yvan.util;
+package com.yvan;
 
 import java.text.SimpleDateFormat;
 
