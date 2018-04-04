@@ -6,7 +6,7 @@ package com.yvan.pojo;
  */
 public class Rest {
     /**
-     * api编号
+     * 接口地址
      */
     private String url;
     /**
@@ -18,7 +18,7 @@ public class Rest {
      */
     private String type;
     /**
-     * 接口地址
+     * api编号
      */
     private String apiId;
 
