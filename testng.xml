@@ -6,4 +6,9 @@
             <class name="com.yvan.RestUniformProcessor"/>
         </classes>
     </test>
+    <listeners>
+        <!-- ReportNg 报告  -->
+        <listener class-name="org.uncommons.reportng.HTMLReporter"/>
+        <listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
+    </listeners>
 </suite>

@@ -6,6 +6,8 @@ import com.yvan.util.ExcelUtil;
 import com.yvan.util.RestUtil;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
+import org.testng.Assert;
+import org.testng.Reporter;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -41,6 +43,8 @@ public class RestUniformProcessor {
         String result = RestUtil.process(type, restUrl, params);
         // 批量写入Excel
         ExcelUtil.addTestResult(caseId, 5, result);
+        // 测试log
+        Reporter.log("测试log→通过");
     }
 
     /**
