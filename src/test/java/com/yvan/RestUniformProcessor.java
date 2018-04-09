@@ -2,16 +2,18 @@ package com.yvan;
 
 import com.alibaba.fastjson.JSONObject;
 import com.yvan.config.RestConfig;
+import com.yvan.exception.BaseException;
 import com.yvan.util.ExcelUtil;
+import com.yvan.util.MsgUtil;
 import com.yvan.util.RestUtil;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
-import org.testng.Assert;
 import org.testng.Reporter;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -51,10 +53,21 @@ public class RestUniformProcessor {
      * 批量写入Excel
      */
     @AfterSuite
-    public void batchWriteBackData() {
+    public void batchWriteBackData() throws BaseException {
         ExcelUtil.batchWrite("target/test-classes/rest_infos.xlsx", 2);
+        try {
+            // 测试完成发送钉钉群机器人信息
+            MsgUtil.dingDingMsg("我就是我，是不一样的烟火！\n接口此轮测试已完成，快来查看吧！");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
+    /**
+     * 测试数据
+     *
+     * @return 测试数据：接口URL和测试用例
+     */
     @DataProvider
     public Object[][] datas() {
         Object[][] datas = ExcelUtil.read("src/test/resources/rest_infos.xlsx", 2, 2, 4, 1, 3);
