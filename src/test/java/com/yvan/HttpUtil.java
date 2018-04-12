@@ -1,5 +1,6 @@
 package com.yvan;
 
+import com.yvan.util.StringUtil;
 import org.apache.http.Consts;
 import org.apache.http.HttpEntity;
 import org.apache.http.ParseException;

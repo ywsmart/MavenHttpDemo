@@ -1,4 +1,4 @@
-package com.yvan;
+package com.yvan.util;
 
 import java.text.SimpleDateFormat;
 
@@ -163,6 +163,14 @@ public class StringUtil {
         int y = -1;
         y = sum % 11;
         return arrVarifyCode[y].equals(idNum.substring(17).toLowerCase());
+    }
+
+    public static boolean isNotEmpty(String str) {
+        return null != str && !"".equals(str);
+    }
+
+    public static boolean isEmpty(String str) {
+        return null == str || "".equals(str);
     }
 
     /**

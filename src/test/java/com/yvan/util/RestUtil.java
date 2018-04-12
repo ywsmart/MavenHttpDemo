@@ -1,5 +1,6 @@
 package com.yvan.util;
 
+import com.yvan.exception.BaseException;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -16,7 +17,16 @@ import java.util.List;
  * Created by YangWang on 2018-03-26 23:49.
  */
 public class RestUtil {
-    public static String process(String type, String restUrl, List<NameValuePair> params) {
+
+    /**
+     * 主处理方法
+     *
+     * @param type      请求方法
+     * @param restUrl   请求地址
+     * @param params    请求参数
+     * @return          结果
+     */
+    public static String process (String type, String restUrl, List<NameValuePair> params) throws BaseException {
         String result = null;
         if ("post".equalsIgnoreCase(type)) {
             result = doPost(restUrl, params);
@@ -31,17 +41,17 @@ public class RestUtil {
      *
      * @return
      */
-    private static String doPost(String restUrl, List<NameValuePair> params) {
+    private static String doPost (String restUrl, List<NameValuePair> params) throws BaseException {
         HttpPost httpPost = new HttpPost(restUrl);
         String result = null;
         try {
-            // 参数封装到请求体当中
+            // 1.参数封装到请求体当中
             httpPost.setEntity(new UrlEncodedFormEntity(params));
-            // 3.准备客户端（HttpClient）
+            // 2.准备客户端（HttpClient）
             CloseableHttpClient httpClient = HttpClients.createDefault();
-            // 4.提交请求
+            // 3.提交请求
             CloseableHttpResponse httpResponse = httpClient.execute(httpPost);
-            // 5.解析接口返回数据
+            // 4.解析接口返回数据
             result = EntityUtils.toString(httpResponse.getEntity());
         } catch (Exception e) {
             e.printStackTrace();
@@ -57,7 +67,7 @@ public class RestUtil {
      * @param params
      * @return
      */
-    private static String doGet(String restUrl, List<NameValuePair> params) {
+    private static String doGet(String restUrl, List<NameValuePair> params) throws BaseException {
         String result = null;
         StringBuffer sb = new StringBuffer(restUrl);
         for (int i = 0; i < params.size(); i++) {

@@ -3,6 +3,7 @@ package com.yvan;
 import com.alibaba.fastjson.JSONObject;
 import com.yvan.config.RestConfig;
 import com.yvan.exception.BaseException;
+import com.yvan.util.AssertUtil;
 import com.yvan.util.ExcelUtil;
 import com.yvan.util.MsgUtil;
 import com.yvan.util.RestUtil;
@@ -45,22 +46,24 @@ public class RestUniformProcessor {
         String result = RestUtil.process(type, restUrl, params);
         // 批量写入Excel
         ExcelUtil.addTestResult(caseId, 5, result);
+        // 获取预期结果
+        String expect = ExcelUtil.getExpectData(caseId, 4);
+        // 断言结果
+        AssertUtil.assertIsContains(expect, result);
         // 测试log
-        Reporter.log("测试log→通过");
+        Reporter.log("测试用例caseId" + caseId + "：测试log→TEST OVER!");
     }
 
-    /**
-     * 批量写入Excel
-     */
     @AfterSuite
     public void batchWriteBackData() throws BaseException {
+        // 批量写入Excel
         ExcelUtil.batchWrite("target/test-classes/rest_infos.xlsx", 2);
-        try {
-            // 测试完成发送钉钉群机器人信息
-            MsgUtil.dingDingMsg("我就是我，是不一样的烟火！\n接口此轮测试已完成，快来查看吧！");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            // 测试完成发送钉钉群机器人信息
+//            MsgUtil.dingDingMsg("我就是我，是不一样的烟火！\n接口此轮测试已完成，快来查看吧！");
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
     }
 
     /**

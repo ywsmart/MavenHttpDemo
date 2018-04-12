@@ -54,44 +54,8 @@ public class ExcelUtil {
         return datas;
     }
 
-    public static void write(String filepath, int sheetNum, String caseId, int cellNum, String result) {
-        InputStream is = null;
-        OutputStream os = null;
-        try {
-            is = new FileInputStream(new File(filepath));
-            Workbook workbook = WorkbookFactory.create(is);
-            Sheet sheet = workbook.getSheetAt(sheetNum - 1);
-            int lastRowNum = sheet.getLastRowNum();
-            Row matchedRow = null;
-            for (int i = 0; i <= lastRowNum; i++) {
-                Row row = sheet.getRow(i);
-                Cell cell = row.getCell(0, Row.MissingCellPolicy.CREATE_NULL_AS_BLANK);
-                cell.setCellType(CellType.STRING);
-                String cellValue = cell.getStringCellValue();
-                if (caseId.equals(cellValue)) {
-                    matchedRow = row;
-                    break;
-                }
-            }
-            Cell cell = matchedRow.getCell(cellNum - 1, Row.MissingCellPolicy.CREATE_NULL_AS_BLANK);
-            cell.setCellType(CellType.STRING);
-            cell.setCellValue(result);
-            os = new FileOutputStream(new File(filepath));
-            workbook.write(os);
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                os.close();
-                is.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
     /**
-     * 批量回写Excel
+     * 准备批量回写Excel的数据
      *
      * @param caseId  用例编号
      * @param cellNum 列号
@@ -102,7 +66,7 @@ public class ExcelUtil {
             caseCellValueMap.get(caseId).put(cellNum, value);
         } else {
             Map<Integer, String> cellValueMap = new HashMap<Integer, String>();
-            cellValueMap.put(cellNum,value);
+            cellValueMap.put(cellNum, value);
             caseCellValueMap.put(caseId, cellValueMap);
         }
         System.out.println(caseCellValueMap);
@@ -122,11 +86,13 @@ public class ExcelUtil {
             Workbook workbook = WorkbookFactory.create(is);
             Sheet sheet = workbook.getSheetAt(sheetNum - 1);
             Set<String> caseIds = caseCellValueMap.keySet();
-            for (String caseId :// 处理用例编号对应行的数据写入
+            // 处理用例编号对应行的数据写入
+            for (String caseId :
                     caseIds) {
                 int rowCount = sheet.getLastRowNum();
                 Row wantedRow = null;
-                for (int i = 0; i <= rowCount; i++) { // 匹配所有行第一列值，确定用例编号对应的行
+                // 匹配所有行第一列值，确定用例编号对应的行
+                for (int i = 0; i <= rowCount; i++) {
                     Row row = sheet.getRow(i);
                     Cell cell = row.getCell(0, Row.MissingCellPolicy.CREATE_NULL_AS_BLANK);
                     cell.setCellType(CellType.STRING);
@@ -140,8 +106,8 @@ public class ExcelUtil {
                     Map<Integer, String> cellValueMap = caseCellValueMap.get(caseId);
                     System.out.println(cellValueMap);
                     Set<Integer> cellNums = cellValueMap.keySet();
-                    System.out.println(cellNums);
-                    for (Integer cellNum : // 处理某行上需要操作的所以列
+                    // 处理某行上需要操作的所有列
+                    for (Integer cellNum :
                             cellNums) {
                         String value = cellValueMap.get(cellNum);
                         Cell cell = wantedRow.getCell(cellNum - 1, Row.MissingCellPolicy.CREATE_NULL_AS_BLANK);
@@ -166,5 +132,27 @@ public class ExcelUtil {
                 e.printStackTrace();
             }
         }
+    }
+
+    /**
+     * 获取预期结果
+     *
+     * @param caseId 用例ID
+     * @param cellNum 列号
+     * @return 返回预期结果
+     */
+    public static String getExpectData(String caseId, int cellNum) {
+        Object[][] datas = read("src/test/resources/rest_infos.xlsx", 2, 2, 4, 1, 4);
+        String value = "";
+        for (Object[] objects :
+                datas) {
+            for (int i = 0; i < objects.length; i++) {
+                if (caseId.equals(objects[0].toString())){
+                    value = objects[cellNum-1].toString();
+                    break;
+                }
+            }
+        }
+        return value;
     }
 }

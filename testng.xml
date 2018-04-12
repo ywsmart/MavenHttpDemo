@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="接口自动化Test">
-    <test verbose="2" preserve-order="true" name="C:/Users/YangWang/IdeaProjects/MavenHttpDemo">
+    <test verbose="2" preserve-order="true" name="测试用例">
         <classes>
             <class name="com.yvan.RestUniformProcessor"/>
         </classes>
@@ -10,5 +10,8 @@
         <!-- ReportNg 报告  -->
         <listener class-name="org.uncommons.reportng.HTMLReporter"/>
         <listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
+        <!--ExtentReport 报告-->
+        <listener class-name="com.yvan.listener.ExtentReportListener"/>
+
     </listeners>
 </suite>
