@@ -10,6 +10,7 @@ import java.util.logging.Logger;
 
 /**
  * @author Liu KaiDi
+ * 为http写的小性能测试程序
  */
 public class HttpTest {
     private static final Logger log = Logger.getLogger(HttpTest.class.getName());

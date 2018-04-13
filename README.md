@@ -2,16 +2,11 @@
 
 学习接口自动化的实践项目。
 
-功能模块：
+主要功能模块
 
-	读取Excel解析（POI）
-	
-	解析JSON参数（FastJSON）
-	
-	执行接口URL（Httpclient）
-	
-	获取返回结果，写入Excel（POI）
-	
-	验证返回结果（JSONPath）
-	
-	生成报告（ExtentReport）
+	读写Excel解析（POI）
+    解析JSON参数（FastJSON）
+	多接口多方法请求（Excel）
+	验证返回结果（TestNG的Assert）
+	生成报告（ExtentReport/ReportNG）
+	结束提示（钉钉机器人）

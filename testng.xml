@@ -7,11 +7,12 @@
         </classes>
     </test>
     <listeners>
+        <listener class-name="com.yvan.listener.AutoTestListener"/>
+        <listener class-name="com.yvan.listener.RetryListener"/>
         <!-- ReportNg 报告  -->
-        <listener class-name="org.uncommons.reportng.HTMLReporter"/>
-        <listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
+        <!--<listener class-name="org.uncommons.reportng.HTMLReporter"/>
+        <listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>-->
         <!--ExtentReport 报告-->
         <listener class-name="com.yvan.listener.ExtentReportListener"/>
-
     </listeners>
 </suite>

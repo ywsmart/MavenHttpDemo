@@ -15,7 +15,6 @@ public class TestngRetry implements IRetryAnalyzer {
     private static int maxRetryCount = 2;
 
     public boolean retry(ITestResult result) {
-        // TODO Auto-generated method stub
         if (result.getThrowable() instanceof BaseException && retryCount % maxRetryCount != 0) {
 //			String message = "running retry for  '" + result.getName()
 //					+ "' on class " + this.getClass().getName() + " Retrying "

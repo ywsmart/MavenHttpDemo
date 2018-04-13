@@ -23,7 +23,7 @@ import java.util.*;
 public class ExtentReportListener implements IReporter {
     //生成的路径以及文件名
     private static final String OUTPUT_FOLDER = "test-output/";
-    private static final String FILE_NAME = "index.html";
+    private static final String FILE_NAME = "接口自动化测试报告.html";
 
     private ExtentReports extent;
 
@@ -115,13 +115,14 @@ public class ExtentReportListener implements IReporter {
         htmlReporter.config().setReportName(ReportUtil.getReportName());
         htmlReporter.config().setChartVisibilityOnOpen(true);
         htmlReporter.config().setTestViewChartLocation(ChartLocation.TOP);
-        htmlReporter.config().setTheme(Theme.STANDARD);
-        //设置点击效果：.node.level-1  ul{ display:none;} .node.level-1.active ul{display:block;}
+        // 主题设置：standard标准，dark黑色
+        htmlReporter.config().setTheme(Theme.DARK);
+        //设置点击效果：.node.level-1  ul{ display:none;} .node.level-D1.active ul{display:block;}
         //设置系统信息样式：.card-panel.environment  th:first-child{ width:30%;}
         htmlReporter.config().setCSS(".node.level-1  ul{ display:none;} .node.level-1.active ul{display:block;}  .card-panel.environment  th:first-child{ width:30%;}");
         // 移除按键监听事件
         htmlReporter.config().setJS("$(window).off(\"keydown\");");
-        //设置静态文件的DNS 如果cdn.rawgit.com访问不了，可以设置为：ResourceCDN.EXTENTREPORTS 或者ResourceCDN.GITHUB
+        //设置静态文件的DNS 访问cdn.rawgit.com较难，设置为：ResourceCDN.EXTENTREPORTS 或者ResourceCDN.GITHUB
         htmlReporter.config().setResourceCDN(ResourceCDN.EXTENTREPORTS);
         extent = new ExtentReports();
         extent.attachReporter(htmlReporter);
