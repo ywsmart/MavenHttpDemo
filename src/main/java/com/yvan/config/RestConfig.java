@@ -16,7 +16,7 @@ public class RestConfig {
     static {
         restInfos = new ArrayList<Rest>();
 
-        Object[][] datas = ExcelUtil.read("src/test/resources/rest_infos.xlsx", 1, 2, 3, 1, 4);
+        Object[][] datas = ExcelUtil.read("src/main/resources/rest_infos.xlsx", 1, 2, 3, 1, 4);
         for (Object[] objects :
                 datas) {
             Rest rest = new Rest();

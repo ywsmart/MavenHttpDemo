@@ -5,8 +5,7 @@ package com.yvan;
  *
  * @author YangWang
  * @date 2018-04-27
- *
- * Created by YangWang on 2018-04-27 22:15.
+ * Created by YangWang on 2018-04-27 22:50.
  */
-public class ApiTest {
+public class Demo {
 }

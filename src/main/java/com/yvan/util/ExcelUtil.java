@@ -69,7 +69,7 @@ public class ExcelUtil {
             cellValueMap.put(cellNum, value);
             caseCellValueMap.put(caseId, cellValueMap);
         }
-        System.out.println(caseCellValueMap);
+//        System.out.println(caseCellValueMap);
     }
 
     /**
@@ -104,7 +104,7 @@ public class ExcelUtil {
                 }
                 if (wantedRow != null) {
                     Map<Integer, String> cellValueMap = caseCellValueMap.get(caseId);
-                    System.out.println(cellValueMap);
+//                    System.out.println(cellValueMap);
                     Set<Integer> cellNums = cellValueMap.keySet();
                     // 处理某行上需要操作的所有列
                     for (Integer cellNum :
@@ -142,7 +142,7 @@ public class ExcelUtil {
      * @return 返回预期结果
      */
     public static String getExpectData(String caseId, int cellNum) {
-        Object[][] datas = read("src/test/resources/rest_infos.xlsx", 2, 2, 4, 1, 4);
+        Object[][] datas = read("src/main/resources/rest_infos.xlsx", 2, 2, 4, 1, 4);
         String value = "";
         for (Object[] objects :
                 datas) {

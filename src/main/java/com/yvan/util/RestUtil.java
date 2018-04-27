@@ -56,7 +56,7 @@ public class RestUtil {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println(result);
+//        System.out.println(result);
         return result;
     }
 
@@ -92,6 +92,5 @@ public class RestUtil {
         // 获取接口返回数据
         return result;
     }
-
 
 }

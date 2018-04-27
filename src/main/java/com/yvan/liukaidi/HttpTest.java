@@ -1,4 +1,4 @@
-package com.yvan;
+package com.yvan.liukaidi;
 
 import org.apache.http.ParseException;
 
@@ -10,7 +10,7 @@ import java.util.logging.Logger;
 
 /**
  * @author Liu KaiDi
- * 为http写的小性能测试程序
+ * 为http写的小性能测试程序，待以后优化
  */
 public class HttpTest {
     private static final Logger log = Logger.getLogger(HttpTest.class.getName());

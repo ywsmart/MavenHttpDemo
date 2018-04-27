@@ -15,7 +15,7 @@ public class AssertUtil {
      * @param search 待检数据
      */
     public static void assertIsContains(String source, String search) {
-        Assert.assertTrue(source.contains(search), String.format("预期结果'%s'不包含实际结果'%s'。", source, search));
+        Assert.assertTrue(source.contains(search), String.format("\n预期结果\t'%s'\n不包含实际结果'%s'。", source, search));
     }
 
 }

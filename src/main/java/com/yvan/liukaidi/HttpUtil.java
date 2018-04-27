@@ -1,4 +1,4 @@
-package com.yvan;
+package com.yvan.liukaidi;
 
 import com.yvan.util.StringUtil;
 import org.apache.http.Consts;
@@ -17,6 +17,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+/**
+ * @author Liu KaiDi
+ * 为http写的小性能测试程序，待以后优化
+ */
 public class HttpUtil {
     public static final String GET = "GET";
     public static final String POST = "POST";

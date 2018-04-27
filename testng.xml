@@ -3,7 +3,7 @@
 <suite name="接口自动化Test">
     <test verbose="2" preserve-order="true" name="测试用例">
         <classes>
-            <class name="com.yvan.RestUniformProcessor"/>
+            <class name="com.yvan.RestProcessor"/>
         </classes>
     </test>
     <listeners>
