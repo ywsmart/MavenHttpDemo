@@ -16,13 +16,16 @@ import java.io.IOException;
  */
 public class MsgUtil {
 
+
     /**
-     * 钉钉机器人网钩地址
+     * 我测试用钉钉机器人网钩地址
      */
-//    我的测试机器人
     private static final String WEBHOOK_TOKEN = "https://oapi.dingtalk.com/robot/send?access_token=e3e0d361113b62b57c49bf1262a9d93f3c72510fa1c6b988d51ac8952b552306";
-//    测试中心机器人
-//    private static final String WEBHOOK_TOKEN = "https://oapi.dingtalk.com/robot/send?access_token=48d320c26e84030c01c7610d6b2334f25dcd2800ab1643f51e3249b15cdb11d7";
+
+    /**
+     * 测试中心群钉钉机器人网钩地址（正式）,使用时请取消以下注释
+     */
+    // private static final String WEBHOOK_TOKEN = "https://oapi.dingtalk.com/robot/send?access_token=48d320c26e84030c01c7610d6b2334f25dcd2800ab1643f51e3249b15cdb11d7";
 
     /**
      * 钉钉群机器人信息提示
@@ -41,7 +44,7 @@ public class MsgUtil {
         HttpResponse response = httpClient.execute(httpPost);
         if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
             String result = EntityUtils.toString(response.getEntity(), "utf-8");
-            System.out.println(result);
+//            System.out.println(result);
         }
     }
 

@@ -21,7 +21,10 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * Function：请求的中央处理类
+ * Function：请求的处理类
+ *
+ * @author YangWang
+ * @date 2018-03-25 1:13
  * Created by YangWang on 2018-03-25 1:13.
  */
 public class RestProcessor {
@@ -60,11 +63,12 @@ public class RestProcessor {
         ExcelUtil.batchWrite("target/classes/rest_infos.xlsx", 2);
 
         try {
-            // 测试完成发送钉钉群机器人信息
+            // 测试结束发送钉钉群机器人提示信息（注意去MsgUtil类里更改正式网钩地址WEBHOOK_TOKEN）
             MsgUtil.dingDingMsg("我就是我，是不一样的烟火！\n接口此轮测试已完成，快来查看吧！");
         } catch (IOException e) {
             e.printStackTrace();
         }
+        System.out.println("测试结束！！！");
     }
 
     /**
