@@ -24,7 +24,7 @@ import java.util.Set;
  * Function：请求的中央处理类
  * Created by YangWang on 2018-03-25 1:13.
  */
-public class RestUniformProcessor {
+public class RestProcessor {
 
     @Test(dataProvider = "datas")
     public void testCases(String caseId, String apiId, String requestData) throws Exception {
@@ -57,13 +57,14 @@ public class RestUniformProcessor {
     @AfterSuite
     public void batchWriteBackData() throws BaseException {
         // 批量写入Excel
-        ExcelUtil.batchWrite("target/test-classes/rest_infos.xlsx", 2);
-//        try {
-//            // 测试完成发送钉钉群机器人信息
-//            MsgUtil.dingDingMsg("我就是我，是不一样的烟火！\n接口此轮测试已完成，快来查看吧！");
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+        ExcelUtil.batchWrite("target/classes/rest_infos.xlsx", 2);
+
+        try {
+            // 测试完成发送钉钉群机器人信息
+            MsgUtil.dingDingMsg("我就是我，是不一样的烟火！\n接口此轮测试已完成，快来查看吧！");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -73,7 +74,7 @@ public class RestUniformProcessor {
      */
     @DataProvider
     public Object[][] datas() {
-        Object[][] datas = ExcelUtil.read("src/test/resources/rest_infos.xlsx", 2, 2, 4, 1, 3);
+        Object[][] datas = ExcelUtil.read("src/main/resources/rest_infos.xlsx", 2, 2, 4, 1, 3);
         return datas;
     }
 
