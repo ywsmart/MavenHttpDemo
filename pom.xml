@@ -73,7 +73,7 @@
             <version>4.2.0</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/com.aventstack/extentreports -->
-        <!--extentreports依赖，用于生成报告-->
+        <!--ExtentReports依赖，用于生成报告-->
         <dependency>
             <groupId>com.aventstack</groupId>
             <artifactId>extentreports</artifactId>
