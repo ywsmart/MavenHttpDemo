@@ -27,7 +27,7 @@ import java.util.Set;
 public class RestUniformProcessor {
 
     @Test(dataProvider = "datas")
-    public void test(String caseId, String apiId, String requestData) throws Exception {
+    public void testCases(String caseId, String apiId, String requestData) throws Exception {
         // 获取接口地址
         String restUrl = RestConfig.getRestUrlByApiId(apiId);
         // 获取接口提交方式
