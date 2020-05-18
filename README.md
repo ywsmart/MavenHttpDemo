@@ -13,7 +13,7 @@
 	
 ## 技术栈
 
-- 核心组件：Httpclient+JsonPath+POI+TestNG+ExtentReport+Log4j
+- 核心组件：Httpclient+FastJSON+POI+TestNG+ExtentReport+Log4j
 - 调度组件：Maven+Git+Jenkins
 
 ## 使用方法(重要)
