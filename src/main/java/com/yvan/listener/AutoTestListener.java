@@ -80,7 +80,6 @@ public class AutoTestListener extends TestListenerAdapter {
              testContext.getFailedTests().getAllResults().iterator(); iterator
                      .hasNext();) {
             ITestResult testResult = iterator.next();
-
             if (testsToBeRemoved.contains(testResult)) {
                 // logger.info("Remove repeat Fail Test: " +
                 // testResult.getName());
