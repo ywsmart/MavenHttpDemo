@@ -46,3 +46,8 @@
 - 支持持续集成
 - 完善log4j的使用
 - 待加。。。
+
+## 敬请期待2.0
+
+- 【进行中】接口测试基础脚手架https://github.com/ywsmart/APITestBase
+- 核心技术栈：RestAssured、Junit5、Allure2、jackson、yaml、hamcrest
